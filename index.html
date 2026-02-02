@@ -3,397 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAKIA | Luxury Menswear</title>
-    
-    <!-- React & ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
-    <!-- Babel -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <title>Rakia.in - Fashion Store</title>
     <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #050505;
-            color: #e5e5e5;
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3, .brand-font {
-            font-family: 'Cinzel', serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
         }
 
-        .gold-text {
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        /* Top Bar for Contact Info */
+        .top-bar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
         }
 
-        .gold-border {
-            border-image: linear-gradient(to right, #bf953f, #fcf6ba, #b38728) 1;
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
         }
 
-        .gold-bg {
-            background: linear-gradient(135deg, #bf953f 0%, #aa771c 100%);
+        /* Navigation */
+        nav {
+            background-color: white;
+            padding: 15px 5%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .nav-links {
+            list-style: none;
+            display: flex;
         }
 
-        /* Hover image zoom effect */
-        .img-container {
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Category Section */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
         }
-        .img-container img {
-            transition: transform 0.7s ease;
+
+        .category-card:hover {
+            transform: translateY(-5px);
         }
-        .img-container:hover img {
-            transform: scale(1.1);
+
+        .category-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #ddd; /* Fallback color if image loads slow */
+        }
+
+        .category-info {
+            padding: 15px;
+        }
+
+        .category-info h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .category-info a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #ddd;
+            padding: 40px 5%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding-right: 20px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e74c3c;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info span {
+            margin-right: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .top-bar { flex-direction: column; text-align: center; gap: 5px; }
+            .nav-links { display: none; } /* Simplified for this demo */
         }
     </style>
 </head>
 <body>
-    <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+    <div class="top-bar">
+        <div>Call us: +91-9078512799</div>
+        <div>
+            <a href="mailto:info@rakia.in">info@rakia.in</a>
+        </div>
+    </div>
 
-        // --- MOCK DATA ---
-        const CATEGORIES = [
-            "All", "T-Shirts", "Jeans", "Polos", "Shirts", "Trousers", "Shorts", "Jackets", "Footwear", "Sunglasses", "Accessories"
-        ];
+    <nav>
+        <div class="logo">RAKIA.IN</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
 
-        // Helper to generate distinct product data
-        const PRODUCTS = [
-            { id: 1, name: "Obsidian Silk Polo", category: "Polos", price: 1899, image: "https://images.unsplash.com/photo-1626557981101-aae6f84aa6ff?q=80&w=800&auto=format&fit=crop" },
-            { id: 2, name: "Midnight Slim Denim", category: "Jeans", price: 2250, image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" },
-            { id: 3, name: "Gold-Rimmed Aviators", category: "Sunglasses", price: 1499, image: "https://images.unsplash.com/photo-1577803645773-f96470509666?q=80&w=800&auto=format&fit=crop" },
-            { id: 4, name: "Noir Executive Shirt", category: "Shirts", price: 1999, image: "https://images.unsplash.com/photo-1620012253295-c15cc3ef1887?q=80&w=800&auto=format&fit=crop" },
-            { id: 5, name: "Distressed Grey Jacket", category: "Jackets", price: 2499, image: "https://images.unsplash.com/photo-1601931846461-9c7606e12e16?q=80&w=800&auto=format&fit=crop" },
-            { id: 6, name: "Urban Tech T-Shirt", category: "T-Shirts", price: 999, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop" },
-            { id: 7, name: "Onyx Leather Loafers", category: "Footwear", price: 2450, image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=800&auto=format&fit=crop" },
-            { id: 8, name: "Slate Chino Trousers", category: "Trousers", price: 1699, image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=800&auto=format&fit=crop" },
-            { id: 9, name: "Minimalist Chrono Watch", category: "Accessories", price: 2399, image: "https://images.unsplash.com/photo-1619134778706-7015533a6150?q=80&w=800&auto=format&fit=crop" },
-            { id: 10, name: "Summer Linen Shorts", category: "Shorts", price: 1299, image: "https://images.unsplash.com/photo-1565552623563-79d20c586146?q=80&w=800&auto=format&fit=crop" },
-            { id: 11, name: "Velvet Touch Tee", category: "T-Shirts", price: 1150, image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop" },
-            { id: 12, name: "Raw Edge Denim Jacket", category: "Jackets", price: 2300, image: "https://images.unsplash.com/photo-1559551409-dadc959f76b8?q=80&w=800&auto=format&fit=crop" },
-            { id: 13, name: "Carbon Fiber Wallet", category: "Accessories", price: 899, image: "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=800&auto=format&fit=crop" },
-            { id: 14, name: "Oxford Weave Shirt", category: "Shirts", price: 1750, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop" },
-            { id: 15, name: "Chelsea Boots", category: "Footwear", price: 2499, image: "https://images.unsplash.com/photo-1638361026021-d7796d11f6c4?q=80&w=800&auto=format&fit=crop" },
-             { id: 16, name: "Ripped Stone Jeans", category: "Jeans", price: 2100, image: "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?q=80&w=800&auto=format&fit=crop" },
-        ];
+    <section class="hero">
+        <div>
+            <h1>New Season Arrivals</h1>
+            <p>Check out all the trends for this season</p>
+            <a href="#" class="btn">Shop Now</a>
+        </div>
+    </section>
 
-        // --- COMPONENTS ---
-
-        const Navbar = ({ cartCount, onCartClick }) => {
-            const [isScrolled, setIsScrolled] = useState(false);
-
-            useEffect(() => {
-                const handleScroll = () => {
-                    setIsScrolled(window.scrollY > 50);
-                };
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
-
-            return (
-                <nav className={`fixed w-full z-50 transition-all duration-300 px-6 py-4 flex justify-between items-center ${isScrolled ? 'bg-black/90 backdrop-blur-md shadow-lg border-b border-gray-800' : 'bg-transparent'}`}>
-                    <div className="flex items-center gap-4">
-                        <i className="ph ph-list text-2xl text-white md:hidden cursor-pointer hover:text-[#d4af37]"></i>
-                        <h1 className="text-3xl font-bold tracking-[0.2em] text-white">
-                            RAKIA<span className="text-[#d4af37]">.</span>
-                        </h1>
-                    </div>
-                    
-                    <div className="hidden md:flex gap-8 text-sm font-medium tracking-widest text-gray-300">
-                        <a href="#" className="hover:text-[#d4af37] transition-colors">COLLECTIONS</a>
-                        <a href="#new-arrivals" className="hover:text-[#d4af37] transition-colors">NEW ARRIVALS</a>
-                        <a href="#about" className="hover:text-[#d4af37] transition-colors">THE BRAND</a>
-                    </div>
-
-                    <div className="flex items-center gap-6">
-                        <i className="ph ph-magnifying-glass text-2xl text-gray-300 hover:text-[#d4af37] cursor-pointer transition-colors"></i>
-                        <div className="relative cursor-pointer" onClick={onCartClick}>
-                            <i className="ph ph-shopping-bag text-2xl text-gray-300 hover:text-[#d4af37] transition-colors"></i>
-                            {cartCount > 0 && (
-                                <span className="absolute -top-1 -right-2 bg-[#d4af37] text-black text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                                    {cartCount}
-                                </span>
-                            )}
-                        </div>
-                    </div>
-                </nav>
-            );
-        };
-
-        const Hero = () => {
-            return (
-                <div className="relative h-screen w-full overflow-hidden flex items-center justify-center">
-                    <div 
-                        className="absolute inset-0 z-0" 
-                        style={{
-                            backgroundImage: "url('https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=2000&auto=format&fit=crop')",
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            filter: 'brightness(0.4)'
-                        }}
-                    ></div>
-                    
-                    <div className="relative z-10 text-center px-4 fade-in">
-                        <h2 className="text-[#d4af37] tracking-[0.3em] text-sm md:text-lg mb-4 uppercase font-bold">The Golden Standard</h2>
-                        <h1 className="brand-font text-5xl md:text-8xl text-white mb-6 leading-tight">
-                            Redefining<br/>Modern Luxury
-                        </h1>
-                        <p className="text-gray-300 max-w-lg mx-auto mb-10 text-sm md:text-base tracking-wide">
-                            Experience the epitome of elegance. Premium materials, impeccable fit, exclusively for the modern gentleman.
-                        </p>
-                        <button className="px-10 py-4 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 uppercase tracking-widest text-sm font-semibold">
-                            Explore Collection
-                        </button>
-                    </div>
-
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-                        <i className="ph ph-caret-down text-3xl text-gray-500"></i>
-                    </div>
+    <section class="container">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid">
+            
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1542272617-08f086303293?q=80&w=600&auto=format&fit=crop" alt="Jeans Collection" class="category-image">
+                <div class="category-info">
+                    <h3>Jeans</h3>
+                    <a href="#">View Products &rarr;</a>
                 </div>
-            );
-        };
+            </div>
 
-        const ProductCard = ({ product, addToCart }) => {
-            return (
-                <div className="group relative">
-                    <div className="img-container relative h-[450px] w-full overflow-hidden bg-gray-900">
-                        <img 
-                            src={product.image} 
-                            alt={product.name} 
-                            className="h-full w-full object-cover opacity-90 group-hover:opacity-100"
-                        />
-                        {/* Quick Action Overlay */}
-                        <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-gradient-to-t from-black via-black/80 to-transparent">
-                            <button 
-                                onClick={() => addToCart(product)}
-                                className="w-full bg-[#d4af37] text-black py-3 uppercase text-xs font-bold tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2"
-                            >
-                                <i className="ph ph-plus"></i> Add to Cart
-                            </button>
-                        </div>
-                        {/* Price Tag Badge */}
-                        <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm px-3 py-1 border border-gray-800">
-                            <span className="text-xs text-gray-200 tracking-wider">₹{product.price}</span>
-                        </div>
-                    </div>
-                    <div className="mt-4 text-center">
-                        <p className="text-xs text-[#d4af37] uppercase tracking-widest mb-1">{product.category}</p>
-                        <h3 className="text-white text-lg font-medium brand-font">{product.name}</h3>
-                    </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop" alt="Shoes Collection" class="category-image">
+                <div class="category-info">
+                    <h3>Shoes</h3>
+                    <a href="#">View Products &rarr;</a>
                 </div>
-            );
-        };
+            </div>
 
-        const App = () => {
-            const [activeCategory, setActiveCategory] = useState("All");
-            const [cart, setCart] = useState([]);
-            const [isCartOpen, setIsCartOpen] = useState(false);
-
-            const filteredProducts = activeCategory === "All" 
-                ? PRODUCTS 
-                : PRODUCTS.filter(p => p.category === activeCategory);
-
-            const addToCart = (product) => {
-                setCart([...cart, product]);
-                // Visual feedback could go here
-            };
-
-            const removeFromCart = (index) => {
-                const newCart = [...cart];
-                newCart.splice(index, 1);
-                setCart(newCart);
-            };
-
-            const cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
-
-            return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar cartCount={cart.length} onCartClick={() => setIsCartOpen(true)} />
-                    
-                    <Hero />
-
-                    {/* Shop Section */}
-                    <main id="new-arrivals" className="flex-grow py-20 px-6 md:px-12 bg-[#0a0a0a]">
-                        <div className="text-center mb-16">
-                            <span className="text-[#d4af37] tracking-[0.2em] text-xs uppercase font-bold">Curated Selection</span>
-                            <h2 className="text-4xl text-white brand-font mt-2">The Collection</h2>
-                            <div className="h-[1px] w-24 bg-[#d4af37] mx-auto mt-6"></div>
-                        </div>
-
-                        {/* Category Filter */}
-                        <div className="flex flex-wrap justify-center gap-4 mb-16 max-w-6xl mx-auto">
-                            {CATEGORIES.map(cat => (
-                                <button 
-                                    key={cat}
-                                    onClick={() => setActiveCategory(cat)}
-                                    className={`px-6 py-2 text-xs uppercase tracking-widest border transition-all duration-300 
-                                        ${activeCategory === cat 
-                                            ? 'border-[#d4af37] bg-[#d4af37] text-black font-bold' 
-                                            : 'border-gray-800 text-gray-500 hover:border-gray-600 hover:text-white'
-                                        }`}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Product Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 max-w-[1600px] mx-auto">
-                            {filteredProducts.map(product => (
-                                <ProductCard key={product.id} product={product} addToCart={addToCart} />
-                            ))}
-                        </div>
-                        
-                        {filteredProducts.length === 0 && (
-                            <div className="text-center py-20 text-gray-500">
-                                <p>No items found in this category.</p>
-                            </div>
-                        )}
-                    </main>
-
-                    {/* Editorial Banner */}
-                    <section className="relative h-[60vh] flex items-center bg-fixed bg-center bg-cover" 
-                        style={{backgroundImage: "url('https://images.unsplash.com/photo-1492446845049-9c50cc313f00?q=80&w=2000&auto=format&fit=crop')"}}>
-                        <div className="absolute inset-0 bg-black/60"></div>
-                        <div className="relative z-10 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2">
-                            <div>
-                                <h2 className="text-4xl md:text-6xl text-white brand-font mb-4">Master The Art <br/>of Presentation</h2>
-                                <p className="text-gray-300 mb-8 max-w-md">Our latest denim collection features Japanese selvedge denim, hand-finished for that perfect worn-in feel.</p>
-                                <button className="text-white border-b border-[#d4af37] pb-1 hover:text-[#d4af37] transition-colors uppercase tracking-widest text-sm">Read the Journal</button>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Footer */}
-                    <footer className="bg-black py-16 border-t border-gray-900 text-center md:text-left">
-                        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-                            <div>
-                                <h2 className="text-2xl text-white brand-font font-bold tracking-widest mb-6">RAKIA<span className="text-[#d4af37]">.</span></h2>
-                                <p className="text-gray-500 text-sm leading-relaxed">
-                                    Crafting premium menswear for the modern individual. Quality, style, and luxury in every stitch.
-                                </p>
-                            </div>
-                            
-                            <div>
-                                <h3 className="text-white text-sm font-bold uppercase tracking-widest mb-6">Support</h3>
-                                <ul className="space-y-4 text-sm text-gray-500">
-                                    <li className="hover:text-[#d4af37] cursor-pointer">Order Status</li>
-                                    <li className="hover:text-[#d4af37] cursor-pointer">Shipping & Returns</li>
-                                    <li className="hover:text-[#d4af37] cursor-pointer">Size Guide</li>
-                                    <li className="hover:text-[#d4af37] cursor-pointer">Contact Us</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h3 className="text-white text-sm font-bold uppercase tracking-widest mb-6">Legal</h3>
-                                <ul className="space-y-4 text-sm text-gray-500">
-                                    <li className="hover:text-[#d4af37] cursor-pointer">Privacy Policy</li>
-                                    <li className="hover:text-[#d4af37] cursor-pointer">Terms of Service</li>
-                                    <li className="hover:text-[#d4af37] cursor-pointer">Cookies</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h3 className="text-white text-sm font-bold uppercase tracking-widest mb-6">Newsletter</h3>
-                                <p className="text-gray-500 text-sm mb-4">Subscribe for exclusive drops.</p>
-                                <div className="flex border-b border-gray-700 pb-2">
-                                    <input type="email" placeholder="Email Address" className="bg-transparent w-full outline-none text-white text-sm" />
-                                    <button className="text-[#d4af37] uppercase text-xs font-bold">Join</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mt-16 text-center text-gray-700 text-xs tracking-widest">
-                            &copy; 2024 RAKIA MENSWEAR. ALL RIGHTS RESERVED.
-                        </div>
-                    </footer>
-
-                    {/* Cart Sidebar */}
-                    <div className={`fixed inset-y-0 right-0 w-full md:w-96 bg-[#0f0f0f] z-[60] transform transition-transform duration-500 border-l border-gray-800 shadow-2xl ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                        <div className="flex flex-col h-full">
-                            <div className="p-6 border-b border-gray-800 flex justify-between items-center">
-                                <h2 className="text-xl text-white brand-font">Shopping Bag ({cart.length})</h2>
-                                <button onClick={() => setIsCartOpen(false)} className="text-gray-400 hover:text-white">
-                                    <i className="ph ph-x text-2xl"></i>
-                                </button>
-                            </div>
-                            
-                            <div className="flex-1 overflow-y-auto p-6 space-y-6">
-                                {cart.length === 0 ? (
-                                    <div className="text-center text-gray-500 mt-10">
-                                        <p>Your bag is empty.</p>
-                                        <button onClick={() => setIsCartOpen(false)} className="mt-4 text-[#d4af37] underline">Continue Shopping</button>
-                                    </div>
-                                ) : (
-                                    cart.map((item, index) => (
-                                        <div key={index} className="flex gap-4">
-                                            <img src={item.image} className="w-20 h-24 object-cover" />
-                                            <div className="flex-1">
-                                                <div className="flex justify-between items-start">
-                                                    <h4 className="text-white text-sm font-medium">{item.name}</h4>
-                                                    <button onClick={() => removeFromCart(index)} className="text-gray-600 hover:text-red-500"><i className="ph ph-trash"></i></button>
-                                                </div>
-                                                <p className="text-gray-500 text-xs mt-1">{item.category}</p>
-                                                <p className="text-[#d4af37] text-sm mt-2">₹{item.price}</p>
-                                            </div>
-                                        </div>
-                                    ))
-                                )}
-                            </div>
-
-                            {cart.length > 0 && (
-                                <div className="p-6 border-t border-gray-800 bg-[#0a0a0a]">
-                                    <div className="flex justify-between mb-4 text-white">
-                                        <span>Subtotal</span>
-                                        <span>₹{cartTotal}</span>
-                                    </div>
-                                    <button className="w-full bg-[#d4af37] text-black py-4 uppercase text-sm font-bold tracking-widest hover:bg-white transition-colors">
-                                        Checkout
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                    {/* Overlay for Cart */}
-                    {isCartOpen && (
-                        <div onClick={() => setIsCartOpen(false)} className="fixed inset-0 bg-black/80 z-[55] backdrop-blur-sm"></div>
-                    )}
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600&auto=format&fit=crop" alt="Shirts Collection" class="category-image">
+                <div class="category-info">
+                    <h3>Shirts</h3>
+                    <a href="#">View Products &rarr;</a>
                 </div>
-            );
-        };
+            </div>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format&fit=crop" alt="T-Shirts Collection" class="category-image">
+                <div class="category-info">
+                    <h3>T-Shirts</h3>
+                    <a href="#">View Products &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Rakia.in</h3>
+                <p>We provide the best quality fashion products at affordable prices. Shop the latest trends in jeans, shoes, and more.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p><span>📍</span> Raghunathpur, Balasore, Odisha 756046</p>
+                    <p><span>📞</span> +91-9078512799</p>
+                    <p><span>✉️</span> <a href="mailto:info@rakia.in" style="color:#ddd; text-decoration:none;">info@rakia.in</a></p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul style="list-style:none;">
+                    <li><a href="#" style="color:#ddd; text-decoration:none;">Privacy Policy</a></li>
+                    <li><a href="#" style="color:#ddd; text-decoration:none;">Terms & Conditions</a></li>
+                    <li><a href="#" style="color:#ddd; text-decoration:none;">Shipping Info</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Rakia.in. All Rights Reserved.
+        </div>
+    </footer>
+
 </body>
 </html>
